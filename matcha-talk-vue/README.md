@@ -8,4 +8,3 @@ Vue 3 + Vite + Vuetify 3 프런트엔드입니다. 제공된 SQL 스키마(`/db/
 npm install
 npm run dev
 # http://localhost:5173
-# test
