@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat class="bg-pink-lighten-5">
+  <v-app-bar flat class="bg-white-lighten-5">
     <v-container class="d-flex align-center justify-space-between">
       <div class="d-flex align-center">
         <v-icon class="me-2" color="pink">mdi-flower</v-icon>
@@ -10,7 +10,7 @@
 
       <div v-if="!isAuth" class="d-flex ga-3">
         <v-btn variant="outlined" color="pink" to="/login">로그인</v-btn>
-        <v-btn color="pink" to="/register">회원가입</v-btn>
+        <v-btn variant="outlined" color="pink" to="/register">회원가입</v-btn>
       </div>
 
       <div v-else class="d-flex ga-3">
