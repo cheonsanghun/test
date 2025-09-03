@@ -7,13 +7,13 @@
 
           <div class="mb-6">
             <div class="text-subtitle-2 mb-2">나이 범위</div>
-            <v-slider v-model="age" :min="20" :max="99" :step="1" thumb-label />
+            <v-slider v-model="age" :min="20" :max="99" :step="1" thumb-label color="pink" track-color="pink-lighten-4" />
             <div class="text-caption">{{ age }} 세</div>
           </div>
 
           <div class="mb-6">
             <div class="text-subtitle-2 mb-2">성별</div>
-            <v-radio-group v-model="gender" inline>
+            <v-radio-group v-model="gender" inline color="pink">
               <v-radio label="남성" value="M"/>
               <v-radio label="여성" value="F"/>
               <v-radio label="상관없음" value="A"/>
@@ -35,7 +35,7 @@
 
           <div class="mb-6 text-center">
             <div class="text-subtitle-2 mb-2">관심사</div>
-            <v-btn color="green" variant="tonal" @click="dialog=true">보기</v-btn>
+            <v-btn color="pink" variant="tonal" @click="dialog=true">보기</v-btn>
             <div class="text-caption mt-2" v-if="interests.length">선택: {{ interests.join(', ') }}</div>
           </div>
 
