@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <AppHeader />
+    <AppHeader/>
     <v-main class="bg-pink-lighten-5">
-      <router-view />
+      <router-view/>
     </v-main>
     <v-footer class="bg-white">
       <v-container class="py-8">
@@ -38,5 +38,7 @@ import AppHeader from './components/AppHeader.vue'
 </script>
 
 <style>
-html, body, #app { height: 100%; }
+html, body, #app {
+  height: 100%;
+}
 </style>

@@ -108,7 +108,6 @@
               :error-messages="errors.country_code"
               @blur="validate('country_code')"
             />
-
             <v-btn type="submit" color="pink" block :disabled="!valid">회원가입</v-btn>
           </v-form>
         </v-card>
@@ -124,7 +123,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const genderItems = ['M','F']
-const countryItems = ['KR','JP','US','CN','GB','DE','FR']
+const countryItems = ['KR','JP']
 
 const form = ref({
   nick_name: '', login_id: '', email: '',
@@ -157,7 +156,6 @@ function checkRules(value, rules){
   }
   return ''
 }
-
 function validate(field){
   switch(field){
     case 'nick_name':
