@@ -3,7 +3,7 @@
     <div class="text-center">
       <h1 class="text-h4 text-pink-darken-2 font-weight-bold">MatchaTalk</h1>
       <div class="text-subtitle-1 text-pink-darken-1 mt-2">문화 교류 랜덤 채팅</div>
-      <v-img src="/src/assets/board_3.jpg" height="260" class="my-8 rounded-lg" cover />
+      <v-img src="/src/assets/sakura-hero.png" height="260" class="my-8 rounded-lg" cover />
       <p class="text-body-2">
         Matcha Talk에서 당신의 관심사와 취향이 맞는 특별한 인연을 찾아보세요.
         벚꽃처럼 아름다운 만남이 기다리고 있습니다.
