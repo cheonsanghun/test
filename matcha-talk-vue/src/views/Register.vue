@@ -1,40 +1,92 @@
 <template>
-  <v-container class="py-10">
+  <v-container class="py-10 bg-pink-lighten-5">
     <v-row justify="center">
       <v-col cols="12" md="8" lg="6">
         <v-card class="pa-8">
           <div class="text-center text-h6 text-pink-darken-2 mb-6">회원가입</div>
 
-          <v-form @submit.prevent="onSubmit" v-model="valid">
-            <v-text-field v-model="form.nick_name" label="이름" :rules="[r.required, r.len(2,30)]" variant="outlined" />
-            <v-row>
-              <v-col cols="9">
-                <v-text-field v-model="form.login_id" label="아이디" :rules="[r.required, r.len(4,30)]" variant="outlined" />
+          <v-form @submit.prevent="onSubmit">
+            <v-row class="mb-4">
+              <v-col cols="8">
+                <v-text-field v-model="form.nick_name" label="이름" variant="outlined" @blur="validate('nick_name')" />
               </v-col>
-              <v-col cols="3" class="d-flex align-end">
-                <v-btn block color="pink" variant="tonal" @click="checkDuplicate">중복 확인</v-btn>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="9">
-                <v-text-field v-model="form.email" label="이메일" :rules="[r.required, r.email]" variant="outlined" />
-              </v-col>
-              <v-col cols="3" class="d-flex align-end">
-                <v-btn block color="pink" variant="tonal" @click="verifyEmail">이메일 인증</v-btn>
+              <v-col cols="4" class="d-flex align-center">
+                <span class="text-caption text-pink-darken-2">{{ errors.nick_name }}</span>
               </v-col>
             </v-row>
-            <v-text-field v-model="form.password" type="password" label="비밀번호" :rules="[r.required, r.len(8,100)]" variant="outlined" />
-            <v-text-field v-model="form.password2" type="password" label="비밀번호 확인"
-                          :rules="[r.required, (v)=> v === form.password || '비밀번호가 일치하지 않습니다.']" variant="outlined" />
-            <v-row>
-              <v-col cols="12" sm="6">
-                <v-text-field v-model="form.birth_date" label="생년월일 (YYYY-MM-DD)" :rules="[r.required, r.date]" variant="outlined" />
+
+            <v-row class="mb-4">
+              <v-col cols="8">
+                <v-text-field v-model="form.login_id" label="아이디" variant="outlined" @blur="validate('login_id')" />
               </v-col>
-              <v-col cols="12" sm="6">
-                <v-select v-model="form.gender" :items="genderItems" label="성별" :rules="[r.required]" variant="outlined" />
+              <v-col cols="4" class="d-flex align-center">
+                <span class="text-caption text-pink-darken-2">{{ errors.login_id }}</span>
               </v-col>
             </v-row>
-            <v-select v-model="form.country_code" :items="countryItems" label="국적" :rules="[r.required]" variant="outlined" />
+
+            <v-row class="mb-4">
+              <v-col cols="8">
+                <v-text-field v-model="form.email" label="이메일" variant="outlined" @blur="validate('email')" />
+              </v-col>
+              <v-col cols="4" class="d-flex align-center">
+                <span class="text-caption text-pink-darken-2">{{ errors.email }}</span>
+              </v-col>
+            </v-row>
+
+            <v-row class="mb-4">
+              <v-col cols="8">
+                <v-text-field v-model="form.password" type="password" label="비밀번호" variant="outlined" @blur="validate('password')" />
+              </v-col>
+              <v-col cols="4" class="d-flex align-center">
+                <span class="text-caption text-pink-darken-2">{{ errors.password }}</span>
+              </v-col>
+            </v-row>
+
+            <v-row class="mb-4">
+              <v-col cols="8">
+                <v-text-field v-model="form.password2" type="password" label="비밀번호 확인" variant="outlined" @blur="validate('password2')" />
+              </v-col>
+              <v-col cols="4" class="d-flex align-center">
+                <span class="text-caption text-pink-darken-2">{{ errors.password2 }}</span>
+              </v-col>
+            </v-row>
+
+            <v-row class="mb-4">
+              <v-col cols="8">
+                <v-row>
+                  <v-col cols="4">
+                    <v-select v-model="birth.year" :items="yearItems" label="년도" variant="outlined" @blur="validate('birth')" />
+                  </v-col>
+                  <v-col cols="4">
+                    <v-select v-model="birth.month" :items="monthItems" label="월" variant="outlined" @blur="validate('birth')" />
+                  </v-col>
+                  <v-col cols="4">
+                    <v-select v-model="birth.day" :items="dayItems" label="일" variant="outlined" @blur="validate('birth')" />
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col cols="4" class="d-flex align-center">
+                <span class="text-caption text-pink-darken-2">{{ errors.birth }}</span>
+              </v-col>
+            </v-row>
+
+            <v-row class="mb-4">
+              <v-col cols="8">
+                <v-select v-model="form.gender" :items="genderItems" label="성별" variant="outlined" @blur="validate('gender')" />
+              </v-col>
+              <v-col cols="4" class="d-flex align-center">
+                <span class="text-caption text-pink-darken-2">{{ errors.gender }}</span>
+              </v-col>
+            </v-row>
+
+            <v-row class="mb-4">
+              <v-col cols="8">
+                <v-select v-model="form.country_code" :items="countryItems" label="국적" variant="outlined" @blur="validate('country_code')" />
+              </v-col>
+              <v-col cols="4" class="d-flex align-center">
+                <span class="text-caption text-pink-darken-2">{{ errors.country_code }}</span>
+              </v-col>
+            </v-row>
 
             <v-btn type="submit" color="pink" block class="mt-4" :disabled="!valid">회원가입</v-btn>
           </v-form>
@@ -46,30 +98,80 @@
 
 <script setup>
 import api from '../services/api'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const valid = ref(false)
 const genderItems = ['M','F']
 const countryItems = ['KR','JP','US','CN','GB','DE','FR']
 
 const form = ref({
   nick_name: '', login_id: '', email: '',
-  password: '', password2: '', birth_date: '', gender: null, country_code: null
+  password: '', password2: '',
+  gender: null, country_code: null
 })
+
+const birth = ref({ year: null, month: null, day: null })
+const yearItems = Array.from({length: 100}, (_,i) => new Date().getFullYear() - i)
+const monthItems = Array.from({length: 12}, (_,i) => i + 1)
+const dayItems = Array.from({length: 31}, (_,i) => i + 1)
+
+const errors = ref({
+  nick_name: '', login_id: '', email: '', password: '', password2: '',
+  birth: '', gender: '', country_code: ''
+})
+
+const valid = computed(() => Object.values(errors.value).every(e => !e))
 
 const r = {
   required: v => !!v || '필수 입력입니다.',
   len: (min,max) => v => (v && v.length>=min && v.length<=max) || `${min}~${max}자`,
-  email: v => !!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || '이메일 형식',
-  date: v => !!/^\d{4}-\d{2}-\d{2}$/.test(v) || 'YYYY-MM-DD',
+  email: v => !!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || '이메일 형식'
 }
 
-async function checkDuplicate(){ alert('중복 확인 API는 백엔드 연결 후 동작합니다.') }
-async function verifyEmail(){ alert('이메일 인증은 백엔드 연결 후 동작합니다.') }
+function checkRules(value, rules){
+  for(const rule of rules){
+    const res = rule(value)
+    if(res !== true) return res
+  }
+  return ''
+}
+
+function validate(field){
+  switch(field){
+    case 'nick_name':
+      errors.value.nick_name = checkRules(form.value.nick_name, [r.required, r.len(2,30)])
+      break
+    case 'login_id':
+      errors.value.login_id = checkRules(form.value.login_id, [r.required, r.len(4,30)])
+      break
+    case 'email':
+      errors.value.email = checkRules(form.value.email, [r.required, r.email])
+      break
+    case 'password':
+      errors.value.password = checkRules(form.value.password, [r.required, r.len(8,100)])
+      break
+    case 'password2':
+      errors.value.password2 = form.value.password2 === form.value.password ? '' : '비밀번호가 일치하지 않습니다.'
+      break
+    case 'birth':
+      const {year, month, day} = birth.value
+      errors.value.birth = year && month && day ? '' : '생년월일을 입력하세요.'
+      break
+    case 'gender':
+      errors.value.gender = form.value.gender ? '' : '성별을 선택하세요.'
+      break
+    case 'country_code':
+      errors.value.country_code = form.value.country_code ? '' : '국적을 선택하세요.'
+      break
+  }
+}
 
 async function onSubmit(){
+  ;['nick_name','login_id','email','password','password2','birth','gender','country_code'].forEach(validate)
+  if(!valid.value) return
+
+  const birth_date = `${birth.value.year}-${String(birth.value.month).padStart(2,'0')}-${String(birth.value.day).padStart(2,'0')}`
   const payload = {
     login_id: form.value.login_id,
     password: form.value.password,
@@ -77,7 +179,7 @@ async function onSubmit(){
     email: form.value.email,
     country_code: form.value.country_code,
     gender: form.value.gender,
-    birth_date: form.value.birth_date,
+    birth_date
   }
   try{
     // await api.post('/auth/register', payload)
