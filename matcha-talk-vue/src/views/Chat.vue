@@ -86,6 +86,7 @@ const messages = ref([
   { text: '확인되면 바로 알려줘', time: '오전 9:02', me: true },
   { text: '내일 몇 시에 만나는게 좋을까?', time: '오전 9:05', me: false },
   { text: '3시에 카페 앞에서 만나자', time: '오전 9:06', me: true }
+
 ])
 
 function openChat(item) {
