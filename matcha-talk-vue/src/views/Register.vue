@@ -123,7 +123,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const genderItems = ['M','F']
-const countryItems = ['KR','JP','US','CN','GB','DE','FR']
+const countryItems = ['KR','JP']
 
 const form = ref({
   nick_name: '', login_id: '', email: '',
