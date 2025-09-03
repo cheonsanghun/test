@@ -10,7 +10,7 @@
 
       <div v-if="!isAuth" class="d-flex ga-3">
         <v-btn variant="outlined" color="pink" to="/login">로그인</v-btn>
-        <v-btn variant="outlined" color="pink" to="/register">회원가입</v-btn>
+        <v-btn color="pink" class="text-white" to="/register">회원가입</v-btn>
       </div>
 
       <div v-else class="d-flex ga-3">
