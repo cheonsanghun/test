@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat class="bg-white-lighten-5">
+  <v-app-bar flat class="bg-white">
     <v-container class="d-flex align-center justify-space-between">
       <div class="d-flex align-center">
         <v-icon class="me-2" color="pink">mdi-flower</v-icon>
