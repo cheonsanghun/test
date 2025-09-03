@@ -4,7 +4,7 @@
     <v-main class="bg-pink-lighten-5">
       <router-view />
     </v-main>
-    <v-footer class="bg-pink-lighten-5">
+    <v-footer class="bg-white">
       <v-container class="py-8">
         <v-row>
           <v-col cols="12" md="4" class="mb-6 mb-md-0">
