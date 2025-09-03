@@ -1,94 +1,114 @@
 <template>
   <v-container class="py-10 bg-pink-lighten-5">
     <v-row justify="center">
-      <v-col cols="12" md="8" lg="6">
+      <v-col cols="12" md="6">
         <v-card class="pa-8">
           <div class="text-center text-h6 text-pink-darken-2 mb-6">회원가입</div>
 
           <v-form @submit.prevent="onSubmit">
-            <v-row class="mb-4">
-              <v-col cols="8">
-                <v-text-field v-model="form.nick_name" label="이름" variant="outlined" @blur="validate('nick_name')" />
-              </v-col>
-              <v-col cols="4" class="d-flex align-center">
-                <span class="text-caption text-pink-darken-2">{{ errors.nick_name }}</span>
-              </v-col>
-            </v-row>
+            <v-text-field
+              v-model="form.nick_name"
+              label="이름"
+              variant="outlined"
+              class="mb-4"
+              :error-messages="errors.nick_name"
+              @blur="validate('nick_name')"
+            />
 
-            <v-row class="mb-4">
-              <v-col cols="8">
-                <v-text-field v-model="form.login_id" label="아이디" variant="outlined" @blur="validate('login_id')" />
-              </v-col>
-              <v-col cols="4" class="d-flex align-center">
-                <span class="text-caption text-pink-darken-2">{{ errors.login_id }}</span>
-              </v-col>
-            </v-row>
+            <div class="d-flex align-end mb-4">
+              <v-text-field
+                v-model="form.login_id"
+                label="아이디"
+                variant="outlined"
+                class="flex-grow-1 me-2"
+                :error-messages="errors.login_id"
+                @blur="validate('login_id')"
+              />
+              <v-btn variant="outlined" color="pink">중복 확인</v-btn>
+            </div>
 
-            <v-row class="mb-4">
-              <v-col cols="8">
-                <v-text-field v-model="form.email" label="이메일" variant="outlined" @blur="validate('email')" />
-              </v-col>
-              <v-col cols="4" class="d-flex align-center">
-                <span class="text-caption text-pink-darken-2">{{ errors.email }}</span>
-              </v-col>
-            </v-row>
+            <div class="d-flex align-end mb-4">
+              <v-text-field
+                v-model="form.email"
+                label="이메일"
+                variant="outlined"
+                class="flex-grow-1 me-2"
+                :error-messages="errors.email"
+                @blur="validate('email')"
+              />
+              <v-btn variant="outlined" color="pink">이메일 인증</v-btn>
+            </div>
 
-            <v-row class="mb-4">
-              <v-col cols="8">
-                <v-text-field v-model="form.password" type="password" label="비밀번호" variant="outlined" @blur="validate('password')" />
-              </v-col>
-              <v-col cols="4" class="d-flex align-center">
-                <span class="text-caption text-pink-darken-2">{{ errors.password }}</span>
-              </v-col>
-            </v-row>
+            <v-text-field
+              v-model="form.password"
+              type="password"
+              label="비밀번호"
+              variant="outlined"
+              class="mb-4"
+              :error-messages="errors.password"
+              @blur="validate('password')"
+            />
 
-            <v-row class="mb-4">
-              <v-col cols="8">
-                <v-text-field v-model="form.password2" type="password" label="비밀번호 확인" variant="outlined" @blur="validate('password2')" />
-              </v-col>
-              <v-col cols="4" class="d-flex align-center">
-                <span class="text-caption text-pink-darken-2">{{ errors.password2 }}</span>
-              </v-col>
-            </v-row>
+            <v-text-field
+              v-model="form.password2"
+              type="password"
+              label="비밀번호 확인"
+              variant="outlined"
+              class="mb-4"
+              :error-messages="errors.password2"
+              @blur="validate('password2')"
+            />
 
-            <v-row class="mb-4">
-              <v-col cols="8">
-                <v-row>
-                  <v-col cols="4">
-                    <v-select v-model="birth.year" :items="yearItems" label="년도" variant="outlined" @blur="validate('birth')" />
-                  </v-col>
-                  <v-col cols="4">
-                    <v-select v-model="birth.month" :items="monthItems" label="월" variant="outlined" @blur="validate('birth')" />
-                  </v-col>
-                  <v-col cols="4">
-                    <v-select v-model="birth.day" :items="dayItems" label="일" variant="outlined" @blur="validate('birth')" />
-                  </v-col>
-                </v-row>
-              </v-col>
-              <v-col cols="4" class="d-flex align-center">
-                <span class="text-caption text-pink-darken-2">{{ errors.birth }}</span>
-              </v-col>
-            </v-row>
+            <div class="mb-4">
+              <div class="d-flex" style="gap: 8px;">
+                <v-select
+                  v-model="birth.year"
+                  :items="yearItems"
+                  label="년도"
+                  variant="outlined"
+                  class="flex-grow-1"
+                  @blur="validate('birth')"
+                />
+                <v-select
+                  v-model="birth.month"
+                  :items="monthItems"
+                  label="월"
+                  variant="outlined"
+                  class="flex-grow-1"
+                  @blur="validate('birth')"
+                />
+                <v-select
+                  v-model="birth.day"
+                  :items="dayItems"
+                  label="일"
+                  variant="outlined"
+                  class="flex-grow-1"
+                  @blur="validate('birth')"
+                />
+              </div>
+              <span class="text-caption text-pink-darken-2">{{ errors.birth }}</span>
+            </div>
 
-            <v-row class="mb-4">
-              <v-col cols="8">
-                <v-select v-model="form.gender" :items="genderItems" label="성별" variant="outlined" @blur="validate('gender')" />
-              </v-col>
-              <v-col cols="4" class="d-flex align-center">
-                <span class="text-caption text-pink-darken-2">{{ errors.gender }}</span>
-              </v-col>
-            </v-row>
+            <v-select
+              v-model="form.gender"
+              :items="genderItems"
+              label="성별"
+              variant="outlined"
+              class="mb-4"
+              :error-messages="errors.gender"
+              @blur="validate('gender')"
+            />
 
-            <v-row class="mb-4">
-              <v-col cols="8">
-                <v-select v-model="form.country_code" :items="countryItems" label="국적" variant="outlined" @blur="validate('country_code')" />
-              </v-col>
-              <v-col cols="4" class="d-flex align-center">
-                <span class="text-caption text-pink-darken-2">{{ errors.country_code }}</span>
-              </v-col>
-            </v-row>
-
-            <v-btn type="submit" color="pink" block class="mt-4" :disabled="!valid">회원가입</v-btn>
+            <v-select
+              v-model="form.country_code"
+              :items="countryItems"
+              label="국적"
+              variant="outlined"
+              class="mb-6"
+              :error-messages="errors.country_code"
+              @blur="validate('country_code')"
+            />
+            <v-btn type="submit" color="pink" block :disabled="!valid">회원가입</v-btn>
           </v-form>
         </v-card>
       </v-col>
@@ -136,7 +156,6 @@ function checkRules(value, rules){
   }
   return ''
 }
-
 function validate(field){
   switch(field){
     case 'nick_name':
