@@ -14,7 +14,7 @@
 
     <v-row class="mt-12" justify="center" align="stretch" no-gutters>
       <v-col cols="12" sm="4" class="pa-4">
-        <v-card class="pa-6" variant="outlined" >
+        <v-card class="pa-6 bg-green-accent-1" variant="outlined" >
           <div class="text-center">
             <v-icon size="36" color="pink">mdi-account-multiple</v-icon>
             <div class="text-subtitle-1 font-weight-bold mt-3">맞춤형 매칭</div>
@@ -23,7 +23,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4" class="pa-4">
-        <v-card class="pa-6" variant="outlined">
+        <v-card class="pa-6 bg-green-accent-1" variant="outlined">
           <div class="text-center">
             <v-icon size="36" color="pink">mdi-chat-processing</v-icon>
             <div class="text-subtitle-1 font-weight-bold mt-3">실시간 채팅</div>
@@ -32,8 +32,8 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4" class="pa-4">
-        <v-card class="pa-6" variant="outlined">
-          <div class="text-center">
+        <v-card class="pa-6 bg-green-accent-1" variant="outlined">
+          <div class="text-center" >
             <v-icon size="36" color="pink">mdi-gift</v-icon>
             <div class="text-subtitle-1 font-weight-bold mt-3">특별한 선물</div>
             <div class="text-body-2 mt-2">상점에서 특별 상품을 구매하여 마음을 전해보세요.</div>
