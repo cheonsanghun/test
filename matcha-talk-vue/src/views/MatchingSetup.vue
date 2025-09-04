@@ -39,9 +39,9 @@
               density="comfortable"
               color="pink"
               style="width: 100%"
+              placeholder="지역을 선택하세요"
             />
           </v-sheet>
-
 
           <v-sheet class="mb-6 pa-4 selection-box text-center">
             <div class="text-subtitle-2 mb-2">관심사</div>
@@ -119,7 +119,7 @@ const regions = [
   { title: '제주', value: 'JEJU' },
   { title: '기타', value: 'OTHER' }
 ]
-const region = ref('BUSAN')
+const region = ref('')
 const dialog = ref(false)
 const interestPool = ['음악','영화','게임','여행','요리','운동','독서']
 const interests = ref([])
