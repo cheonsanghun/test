@@ -10,7 +10,7 @@
               <div class="text-caption">{{ user?.email }}</div>
             </div>
             <v-spacer/>
-            <v-btn color="pink" variant="tonal" @click="logout">로그아웃</v-btn>
+            <v-btn color="pink" variant="tonal" @click="logout" to="/">로그아웃</v-btn>
           </div>
           <v-divider class="my-4"/>
           <div class="text-caption">프로필/친구/차단/언어 설정 등은 추후 확장</div>

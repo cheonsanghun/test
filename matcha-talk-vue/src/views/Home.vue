@@ -125,7 +125,7 @@ const petals = Array.from({length: 20}).map(() => ({
 .sakura-bg span {
   position: absolute;
   top: -10%;
-  background: url('/src/assets/sakura-petal.svg') no-repeat center/contain;
+  background: url('src/assets/sakura-petal.svg') no-repeat center/contain;
   animation-name: fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
