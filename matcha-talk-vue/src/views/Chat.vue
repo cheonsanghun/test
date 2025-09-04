@@ -84,6 +84,7 @@
             hide-details
             placeholder="메시지를 입력하세요..."
             class="flex-grow-1"
+            @keydown.enter.prevent="send"
           />
           <v-btn icon variant="text"><v-icon>mdi-emoticon-outline</v-icon></v-btn>
           <v-btn icon color="primary" @click="send"><v-icon>mdi-send</v-icon></v-btn>
@@ -94,7 +95,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
 
 const query = ref('')
 const chats = ref([
@@ -103,24 +105,35 @@ const chats = ref([
 ])
 const current = ref(chats.value[0])
 const draft = ref('')
-const messages = ref([
-  { text: '영재씨에게 연락 넣어놨어', time: '오전 9:01', me: false },
-  { text: '확인되면 바로 알려줘', time: '오전 9:02', me: true },
-  { text: '내일 몇 시에 만나는게 좋을까?', time: '오전 9:05', me: false },
-  { text: '3시에 카페 앞에서 만나자', time: '오전 9:06', me: true }
-])
+const conversations = ref({
+  1: [
+    { text: '영재씨에게 연락 넣어놨어', time: '오전 9:01', me: false },
+    { text: '확인되면 바로 알려줘', time: '오전 9:02', me: true },
+    { text: '내일 몇 시에 만나는게 좋을까?', time: '오전 9:05', me: false },
+    { text: '3시에 카페 앞에서 만나자', time: '오전 9:06', me: true }
+  ],
+  2: []
+})
+
+const messages = computed(() => conversations.value[current.value.id] || [])
+
 
 function openChat(item) {
   current.value = item
+  if (!conversations.value[item.id]) conversations.value[item.id] = []
 }
 
 function send() {
   if (!draft.value) return
-  messages.value.push({
-    text: draft.value,
-    time: new Date().toLocaleTimeString(),
-    me: true
+  const formatted = new Date().toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit'
   })
+  const msg = { text: draft.value, time: formatted, me: true }
+  conversations.value[current.value.id].push(msg)
+  const chat = chats.value.find(c => c.id === current.value.id)
+  if (chat) chat.last = draft.value
+
   draft.value = ''
 }
 </script>
