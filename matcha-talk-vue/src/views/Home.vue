@@ -1,22 +1,22 @@
 <template>
   <div>
-    <div class="sakura-bg">
-      <span
-          v-for="(p, i) in petals"
-          :key="i"
-          :style="{
-          left: p.left,
-          animationDelay: p.delay,
-          animationDuration: p.duration,
-          width: p.size,
-          height: p.size,
-          opacity: p.opacity,
-          '--move': p.move + 'px'
-        }"
-      ></span>
-    </div>
     <section class="py-10 bg-pink-lighten-5">
       <v-container>
+        <div class="sakura-bg">
+          <span
+              v-for="(p, i) in petals"
+              :key="i"
+              :style="{
+              left: p.left,
+              animationDelay: p.delay,
+              animationDuration: p.duration,
+              width: p.size,
+              height: p.size,
+              opacity: p.opacity,
+              '--move': p.move + 'px'
+            }"
+          ></span>
+        </div>
         <div class="text-center">
           <h1 class="text-h3 text-pink-darken-2 font-weight-bold">MatchaTalk</h1>
           <div class="text-subtitle-1 text-pink-darken-1 mt-2">문화 교류 랜덤 채팅</div>
@@ -115,7 +115,7 @@ const petals = Array.from({length: 20}).map(() => ({
 .sakura-bg span {
   position: absolute;
   top: -10%;
-  background: url('/src/assets/sakura-petal.svg') no-repeat center/contain;
+  background: url('src/assets/sakura-petal.svg') no-repeat center/contain;
   animation-name: fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
