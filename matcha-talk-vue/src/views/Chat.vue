@@ -108,6 +108,7 @@
           />
           <v-btn icon variant="text"><v-icon>mdi-emoticon-outline</v-icon></v-btn>
           <v-btn icon color="success" @click="send"><v-icon>mdi-send</v-icon></v-btn>
+
         </div>
       </v-col>
     </v-row>
@@ -153,6 +154,7 @@ const filteredGroups = computed(() =>
 
 const messages = computed(() => conversations.value[current.value.id] || [])
 
+
 function openChat(item) {
   current.value = item
   if (!conversations.value[item.id]) conversations.value[item.id] = []
@@ -169,6 +171,7 @@ function send() {
   let chat = chats.value.find(c => c.id === current.value.id)
   if (!chat) chat = groups.value.find(c => c.id === current.value.id)
   if (chat) chat.last = draft.value
+
   draft.value = ''
 }
 </script>
@@ -180,6 +183,7 @@ function send() {
 .chat-sidebar {
   background: #ffeef5;
   border-right: 1px solid #ffd6e8;
+
   height: 100%;
 }
 .chat-main {
@@ -191,6 +195,7 @@ function send() {
 }
 .chat-input {
   border-top: 1px solid #eee;
+
 }
 </style>
 
