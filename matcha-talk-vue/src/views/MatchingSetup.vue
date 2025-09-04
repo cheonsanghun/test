@@ -5,7 +5,7 @@
         <v-card class="pa-8">
           <div class="text-center text-h6 text-pink-darken-2 mb-6">나에게 맞는 인연 찾기</div>
 
-          <div class="mb-6">
+          <v-sheet class="mb-6 pa-4 selection-box">
             <div class="text-subtitle-2 mb-2">나이 범위</div>
             <v-range-slider
               v-model="ageRange"
@@ -17,18 +17,18 @@
               track-color="pink-lighten-4"
             />
             <div class="text-caption">{{ ageRange[0] }} - {{ ageRange[1] }} 세</div>
-          </div>
+          </v-sheet>
 
-          <div class="mb-6">
+          <v-sheet class="mb-6 pa-4 selection-box">
             <div class="text-subtitle-2 mb-2">성별</div>
-            <v-btn-toggle v-model="gender" color="pink" divided>
-              <v-btn value="M">남성</v-btn>
-              <v-btn value="F">여성</v-btn>
-              <v-btn value="A">상관없음</v-btn>
+            <v-btn-toggle v-model="gender" color="pink" class="w-100">
+              <v-btn value="M" variant="outlined">남성</v-btn>
+              <v-btn value="F" variant="outlined">여성</v-btn>
+              <v-btn value="A" variant="outlined">상관없음</v-btn>
             </v-btn-toggle>
-          </div>
+          </v-sheet>
 
-          <div class="mb-6">
+          <v-sheet class="mb-6 pa-4 selection-box">
             <div class="text-subtitle-2 mb-2">희망 지역</div>
             <v-select
               v-model="region"
@@ -37,11 +37,13 @@
               item-value="value"
               variant="outlined"
               density="comfortable"
+              color="pink"
               style="width: 100%"
             />
-          </div>
+          </v-sheet>
 
-          <div class="mb-6 text-center">
+
+          <v-sheet class="mb-6 pa-4 selection-box text-center">
             <div class="text-subtitle-2 mb-2">관심사</div>
             <v-btn color="pink" variant="tonal" @click="dialog=true">관심사 선택</v-btn>
             <v-chip-group v-if="interests.length" class="mt-2" multiple>
@@ -53,7 +55,7 @@
                 variant="tonal"
               >{{ i }}</v-chip>
             </v-chip-group>
-          </div>
+          </v-sheet>
 
           <v-btn
             color="pink"
@@ -144,3 +146,16 @@ async function startMatch(){
   }
 }
 </script>
+
+<style scoped>
+.selection-box {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+}
+.selection-box :deep(.v-btn--variant-outlined) {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.selection-box :deep(.v-field__outline) {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+</style>
