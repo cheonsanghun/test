@@ -97,6 +97,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 
+
 const query = ref('')
 const chats = ref([
   { id: 1, name: '김서연', last: '안녕하세요! 오늘 날씨가 정말 좋네요' },
@@ -116,6 +117,7 @@ const conversations = ref({
 
 const messages = computed(() => conversations.value[current.value.id] || [])
 
+
 function openChat(item) {
   current.value = item
   if (!conversations.value[item.id]) conversations.value[item.id] = []
@@ -131,6 +133,7 @@ function send() {
   conversations.value[current.value.id].push(msg)
   const chat = chats.value.find(c => c.id === current.value.id)
   if (chat) chat.last = draft.value
+
   draft.value = ''
 }
 </script>
