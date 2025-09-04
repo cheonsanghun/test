@@ -42,6 +42,7 @@
             />
           </v-sheet>
 
+
           <v-sheet class="mb-6 pa-4 selection-box text-center">
             <div class="text-subtitle-2 mb-2">관심사</div>
             <v-btn color="pink" variant="tonal" @click="dialog=true">관심사 선택</v-btn>
