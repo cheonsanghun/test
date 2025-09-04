@@ -1,22 +1,22 @@
 <template>
   <div>
-    <div class="sakura-bg">
-      <span
-          v-for="(p, i) in petals"
-          :key="i"
-          :style="{
-          left: p.left,
-          animationDelay: p.delay,
-          animationDuration: p.duration,
-          width: p.size,
-          height: p.size,
-          opacity: p.opacity,
-          '--move': p.move + 'px'
-        }"
-      ></span>
-    </div>
-    <section class="py-10 bg-pink-lighten-5">
-      <v-container>
+    <section class="py-10 bg-pink-lighten-5 sakura-section">
+      <div class="sakura-bg">
+        <span
+            v-for="(p, i) in petals"
+            :key="i"
+            :style="{
+            left: p.left,
+            animationDelay: p.delay,
+            animationDuration: p.duration,
+            width: p.size,
+            height: p.size,
+            opacity: p.opacity,
+            '--move': p.move + 'px'
+          }"
+        ></span>
+      </div>
+      <v-container class="sakura-content">
         <div class="text-center">
           <h1 class="text-h3 text-pink-darken-2 font-weight-bold">MatchaTalk</h1>
           <div class="text-subtitle-1 text-pink-darken-1 mt-2">문화 교류 랜덤 채팅</div>
@@ -104,12 +104,22 @@ const petals = Array.from({length: 20}).map(() => ({
 </script>
 
 <style scoped>
+.sakura-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.sakura-content {
+  position: relative;
+  z-index: 1;
+}
+
 .sakura-bg {
   pointer-events: none;
-  position: fixed;
+  position: absolute;
   inset: 0;
   overflow: hidden;
-  z-index: -1;
+  z-index: 0;
 }
 
 .sakura-bg span {
@@ -127,7 +137,7 @@ const petals = Array.from({length: 20}).map(() => ({
     transform: translateX(0) translateY(0) rotate(0deg);
   }
   100% {
-    transform: translateX(var(--move)) translateY(110vh) rotate(360deg);
+    transform: translateX(var(--move)) translateY(110%) rotate(360deg);
   }
 }
 </style>
