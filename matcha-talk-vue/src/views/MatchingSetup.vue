@@ -138,7 +138,7 @@ async function startMatch(){
   }
   try{
     // await api.post('/match/requests', payload)
-    router.push('/match/result')
+    router.push('/match/wait')
   }catch(e){
     alert('매칭 실패: ' + (e?.response?.data?.message || e.message))
   }finally{

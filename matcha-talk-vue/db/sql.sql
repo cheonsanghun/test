@@ -104,10 +104,13 @@ CREATE TABLE match_requests (
   max_age        INT NOT NULL ,                -- 최대 나이
   region_code    VARCHAR(10) NOT NULL,                                   -- 희망 지역
   interests_json JSON NOT NULL,                                          -- 관심사 배열(JSON)
-  status         VARCHAR(10) NOT NULL DEFAULT 'WAITING'                  -- 대기/매칭/취소
-                  CHECK (status IN ('WAITING','MATCHED','CANCELLED')),
+  matched_user_pid BIGINT NULL,                                          -- 매칭된 상대 사용자
+  status         VARCHAR(10) NOT NULL DEFAULT 'WAITING'                  -- 상태
+                  CHECK (status IN ('WAITING','READY','MATCHED','ACCEPTED','CANCELLED')),
+  accepted_at    TIMESTAMP NULL,                                         -- 수락 시각
   requested_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                    -- 요청시각
   CONSTRAINT fk_mr_user FOREIGN KEY (user_pid) REFERENCES users(user_pid) ON DELETE CASCADE,
+  CONSTRAINT fk_mr_matched FOREIGN KEY (matched_user_pid) REFERENCES users(user_pid) ON DELETE SET NULL,
   CONSTRAINT ck_mr_age_range CHECK (max_age >= min_age),
   
   -- 인덱스(매칭 스캔)
